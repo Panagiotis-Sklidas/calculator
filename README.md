@@ -1,4 +1,4 @@
-# Calculartor
+# Calculator
   This projects it's a simple calculator developed with Java SE v.13.0.2 JavaFX v.13 at NetBeans IDE v.11.1
 
 ## Prerequisites
