@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -74,16 +76,16 @@ public class Calculator extends Application{
         btnMod.setOnAction(e->mod());
         Button btnQ = new Button("/");
         gPane.add(btnQ, 2, 3, 1, 1);
-        btnQ.setOnAction(e->q());
+        btnQ.setOnAction(e->division());
         Button btnMul = new Button("*");
         gPane.add(btnMul, 3, 3, 1, 1);
-        btnMul.setOnAction(e->multiple());
+        btnMul.setOnAction(e->multiplication());
         Button btnMin = new Button("-");
         gPane.add(btnMin, 3, 4, 1, 1);
         btnMin.setOnAction(e->substrack());
         Button btnPlus = new Button("+");
         gPane.add(btnPlus, 3, 5, 1, 1);
-        btnPlus.setOnAction(e->add());
+        btnPlus.setOnAction(e->addition());
         Button btnEq = new Button("=");
         gPane.add(btnEq, 3, 6, 1, 1);
         btnEq.setOnAction(e->equ());
@@ -179,12 +181,136 @@ public class Calculator extends Application{
         primaryStage.setTitle("Calculator");
         primaryStage.setResizable(false);
         primaryStage.show();
+        
+        /*Key mapping*/
+        scn.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->{
+            switch(key.getCode()){
+                case EQUALS:
+                    if(key.isShiftDown() == true){
+                        addition();
+                    }
+                    else{
+                        equ();
+                    }
+                    break;
+                case ADD:
+                    addition();
+                    break;
+                case MINUS:
+                    substrack();
+                    break;
+                case SUBTRACT:
+                    substrack();
+                    break;
+                case MULTIPLY:
+                    multiplication();
+                    break;
+                case DIVIDE:
+                    division();
+                    break;
+                case SLASH:
+                    division();
+                    break;
+                case BACK_SPACE:
+                    backSpace();
+                    break;
+                case DELETE:
+                    clear();
+                    break;
+                case DECIMAL:
+                    dote();
+                    break;
+                case H:
+                    history();
+                    break;
+                case NUMPAD0:
+                    btn0();
+                    break;
+                case NUMPAD1:
+                    btn1();
+                    break;
+                case NUMPAD2:
+                    btn2();
+                    break;
+                case NUMPAD3:
+                    btn3();
+                    break;
+                case NUMPAD4:
+                    btn4();
+                    break;
+                case NUMPAD5:
+                    btn5();
+                    break;
+                case NUMPAD6:
+                    btn6();
+                    break;
+                case NUMPAD7:
+                    btn7();
+                    break;
+                case NUMPAD8:
+                    btn8();
+                    break;
+                case NUMPAD9:
+                    btn9();
+                    break;
+                case DIGIT0:
+                    btn0();
+                    break;
+                case DIGIT1:
+                    btn1();
+                    break;
+                case DIGIT2:
+                    btn2();
+                    break;
+                case DIGIT3:
+                    btn3();
+                    break;
+                case DIGIT4:
+                    btn4();
+                    break;
+                case DIGIT5:
+                    if(key.isShiftDown()){
+                        mod();
+                    }
+                    else{
+                        btn5();
+                    }
+                    break;
+                case DIGIT6:
+                    btn6();
+                    break;
+                case DIGIT7:
+                    btn7();
+                    break;
+                case DIGIT8:
+                    if(key.isShiftDown()){
+                        multiplication();
+                    }
+                    else{
+                        btn8();
+                    }
+                    break; 
+                case DIGIT9:
+                    btn9();
+                    break;
+                case ESCAPE:
+                    primaryStage.close();
+                default:
+                    if(key.isShiftDown() || key.getCode() == KeyCode.ESCAPE){
+                    }
+                    else{
+                        System.out.println("The key has not been mapped yet"); 
+                    }
+            }
+        });
     }
-
+    
+    /*Method that inserts a dote for decimals*/
     public void dote(){
         re.appendText(".");
     }
     
+    /*Creates the backspace method*/
     public void backSpace(){
        String msg = "";
         if(re.getText().length() > 0){
@@ -196,6 +322,7 @@ public class Calculator extends Application{
         }
     }
     
+    /*Create the method when the equals is pressed*/
     public void equ(){
         String msg = "";
         if(re.getText().isBlank() != true && num.getText().isBlank() != true){
@@ -243,19 +370,23 @@ public class Calculator extends Application{
         }
     }
     
+    /*Method that makes the History Scene visible*/
     public void history(){
         stage.setScene(scn2);
     }
     
+    /*Method that returns to calculator*/
     public void bCalc(){
         stage.setScene(scn);
     }
     
+    /*Method that clear (resets) the scene*/
     public void clear(){
         re.setText("");
         num.setText("");
     }
     
+    /*Creating the mathematical operations*/
     public void mod(){
         re.appendText("%");
         num.setText(re.getText());
@@ -263,14 +394,14 @@ public class Calculator extends Application{
         x = Double.valueOf(num.getText().substring(0, num.getText().length() - 1));
     }
     
-    public void q(){
+    public void division(){
         re.appendText("/");
         num.setText(re.getText());
         re.setText("");
         x = Double.valueOf(num.getText().substring(0, num.getText().length() - 1));
     }
     
-    public void multiple(){
+    public void multiplication(){
         re.appendText("*");
         num.setText(re.getText());
         re.setText("");
@@ -284,13 +415,14 @@ public class Calculator extends Application{
         x = Double.valueOf(num.getText().substring(0, num.getText().length() - 1));
     }
     
-    public void add(){
+    public void addition(){
         re.appendText("+");
         num.setText(re.getText());
         re.setText("");
         x = Double.valueOf(num.getText().substring(0, num.getText().length() - 1));
     }
  
+    /*Creating the numbers*/
     public void btn9(){
         re.appendText("9");
     }
