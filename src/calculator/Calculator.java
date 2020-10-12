@@ -67,6 +67,12 @@ public class Calculator extends Application{
         gPane.getColumnConstraints().add(column1);
         
         /*Creating the buttons*/
+        
+        Button btnEq = new Button("=");
+        gPane.add(btnEq, 3, 6, 1, 2);
+        btnEq.setPrefHeight(100);
+        btnEq.setOnAction(e->equ());
+        btnEq.setId("okBtn");
         Button btnC = new Button("C");
         btnC.setId("clear");
         gPane.add(btnC, 0, 3, 1, 1);
@@ -86,10 +92,6 @@ public class Calculator extends Application{
         Button btnPlus = new Button("+");
         gPane.add(btnPlus, 3, 5, 1, 1);
         btnPlus.setOnAction(e->addition());
-        Button btnEq = new Button("=");
-        gPane.add(btnEq, 3, 6, 1, 1);
-        btnEq.setOnAction(e->equ());
-        btnEq.setId("okBtn");
         Button btnDot = new Button(".");
         gPane.add(btnDot, 2, 7, 1, 1);
         btnDot.setOnAction(e->dote());
@@ -186,12 +188,15 @@ public class Calculator extends Application{
         scn.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->{
             switch(key.getCode()){
                 case EQUALS:
-                    if(key.isShiftDown() == true){
+                    if(key.isShiftDown()){
                         addition();
                     }
                     else{
                         equ();
                     }
+                    break;
+                case ENTER:
+                    equ();
                     break;
                 case ADD:
                     addition();
