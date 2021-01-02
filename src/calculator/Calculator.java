@@ -362,7 +362,7 @@ public class Calculator extends Application{
                 case "%":
                     re.setText(String.valueOf(String.format("%.4f", x % y)));
                     num.setText("");
-                    histo.setText(histo.getText() + "\n" + x + "mod" + y + "=" + String.valueOf(String.format("%.4f", x * y)) + "\n");
+                    histo.setText(histo.getText() + "\n" + x + "mod" + y + "=" + String.valueOf(String.format("%.4f", x % y)) + "\n");
                     break;
                 default:
                     msg += "There's not such an operation symbol";
