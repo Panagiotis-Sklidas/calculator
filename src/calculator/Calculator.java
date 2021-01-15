@@ -71,7 +71,6 @@ public class Calculator extends Application{
         gPane.add(btnEq, 3, 6, 1, 2);
         btnEq.setPrefHeight(100);
         btnEq.setOnAction(e->equ());
-        btnEq.isDefaultButton();
         btnEq.setId("okBtn");
         Button btnC = new Button("C");
         btnC.setId("clear");
