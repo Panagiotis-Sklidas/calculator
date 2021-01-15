@@ -14,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -72,6 +71,7 @@ public class Calculator extends Application{
         gPane.add(btnEq, 3, 6, 1, 2);
         btnEq.setPrefHeight(100);
         btnEq.setOnAction(e->equ());
+        btnEq.isDefaultButton();
         btnEq.setId("okBtn");
         Button btnC = new Button("C");
         btnC.setId("clear");
@@ -300,13 +300,9 @@ public class Calculator extends Application{
                     break;
                 case ESCAPE:
                     primaryStage.close();
+                    break;
                 default:
                     System.out.println("The key has not been mapped yet");
-                   /* if(key.isShiftDown() || key.getCode() == KeyCode.ESCAPE){
-                    }
-                    else{
-                        System.out.println("The key has not been mapped yet"); 
-                    }*/
             }
         });
     }
