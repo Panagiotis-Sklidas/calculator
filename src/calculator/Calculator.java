@@ -301,11 +301,12 @@ public class Calculator extends Application{
                 case ESCAPE:
                     primaryStage.close();
                 default:
-                    if(key.isShiftDown() || key.getCode() == KeyCode.ESCAPE){
+                    System.out.println("The key has not been mapped yet");
+                   /* if(key.isShiftDown() || key.getCode() == KeyCode.ESCAPE){
                     }
                     else{
                         System.out.println("The key has not been mapped yet"); 
-                    }
+                    }*/
             }
         });
     }
