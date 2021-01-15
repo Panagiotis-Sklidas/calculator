@@ -10,3 +10,5 @@
 
 ## Installing
   After you install NetBeans IDE go to Tools->Library->New Library and add all the contents from lib (JavaFX)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/panagiotis-sklidas/calculator/badge)](https://www.codefactor.io/repository/github/panagiotis-sklidas/calculator)
