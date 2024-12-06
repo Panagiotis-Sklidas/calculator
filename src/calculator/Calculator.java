@@ -176,8 +176,8 @@ public class Calculator extends Application{
         bHist.setCenter(gHist);
         scn = new Scene(bPane, 300, 375);
         scn2 = new Scene(bHist, 300, 375);
-        /*Image img = new Image("/icons/calculator.png");
-        primaryStage.getIcons().add(img);*/
+        Image img = new Image("/icons/calculator.png");
+        primaryStage.getIcons().add(img);
         primaryStage.setScene(scn);
         primaryStage.setTitle("Calculator");
         primaryStage.setResizable(false);
@@ -314,7 +314,7 @@ public class Calculator extends Application{
     /*Creates the backspace method*/
     public void backSpace(){
        String msg = "";
-        if(re.getText().length() > 0){
+        if(!re.getText().isEmpty()){
             re.setText(re.getText().substring(0, re.getText().length() - 1));
         }
         else{
@@ -326,24 +326,24 @@ public class Calculator extends Application{
     /*Create the method when the equals is pressed*/
     public void equ(){
         String msg = "";
-        if(re.getText().isBlank() != true && num.getText().isBlank() != true){
+        if(!re.getText().isEmpty() && !num.getText().isEmpty()){
             y = Double.valueOf(re.getText());
             String p = num.getText().substring(num.getText().length() - 1);
             switch (p) {
                 case "+":
-                    re.setText(String.valueOf(String.format("%.4f", x + y)));
+                    re.setText(String.valueOf(String.format("%.2f", x + y)));
                     num.setText("");
-                    histo.setText(histo.getText() + "\n" + x + p + y + "=" + String.valueOf(String.format("%.4f", x + y)) + "\n");
+                    histo.setText(histo.getText() + "\n" + x + p + y + "=" + String.valueOf(String.format("%.2f", x + y)) + "\n");
                     break;
                 case "-":
                     re.setText(String.valueOf(String.format("%.4f", x - y)));
                     num.setText("");
-                    histo.setText(histo.getText() + "\n" + x + p + y + "=" + String.valueOf(String.format("%.4f", x - y)) + "\n");
+                    histo.setText(histo.getText() + "\n" + x + p + y + "=" + String.valueOf(String.format("%.2f", x - y)) + "\n");
                     break;
                 case "*":
                     re.setText(String.valueOf(String.format("%.4f", x * y)));
                     num.setText("");
-                    histo.setText(histo.getText() + "\n" + x + p + y + "=" + String.valueOf(String.format("%.4f", x * y)) + "\n");
+                    histo.setText(histo.getText() + "\n" + x + p + y + "=" + String.valueOf(String.format("%.2f", x * y)) + "\n");
                     break;
                 case "/":
                     if(y == 0){
@@ -351,14 +351,14 @@ public class Calculator extends Application{
                         MessageBox.show(msg, "Error");
                     }
                     else{
-                        re.setText(String.valueOf(String.format("%.4f", x / y)));
+                        re.setText(String.valueOf(String.format("%.2f", x / y)));
                         num.setText("");
-                        histo.setText(histo.getText() + "\n" + x + p + y + "=" + String.valueOf(String.format("%.4f", x / y)) + "\n");
+                        histo.setText(histo.getText() + "\n" + x + p + y + "=" + String.valueOf(String.format("%.2f", x / y)) + "\n");
                     }   break;
                 case "%":
                     re.setText(String.valueOf(String.format("%.4f", x % y)));
                     num.setText("");
-                    histo.setText(histo.getText() + "\n" + x + "mod" + y + "=" + String.valueOf(String.format("%.4f", x % y)) + "\n");
+                    histo.setText(histo.getText() + "\n" + x + "mod" + y + "=" + String.valueOf(String.format("%.2f", x % y)) + "\n");
                     break;
                 default:
                     msg += "There's not such an operation symbol";
